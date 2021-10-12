@@ -6,6 +6,12 @@ import { AppComponent } from './app.component';
 import { GeneratorComponent } from './generator/generator.component';
 import { PaymentsComponent } from './payments/payments.component';
 
+/**
+ * The main Angular app Module.
+ *
+ * Declares all the app's components and prepares the app
+ * to run in a browser with the routes imported from {@link AppRoutingModule}.
+ */
 @NgModule({
     declarations: [
         AppComponent,

@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { CodeService } from '../code.service';
 
+/**
+ * Displays the code generation table to the user.
+ */
 @Component({
     selector: 'aio-generator',
     templateUrl: './generator.component.html',
@@ -7,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GeneratorComponent implements OnInit {
 
-    constructor() { }
+    constructor(private codeService: CodeService) { }
 
     ngOnInit(): void {
     }

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+/**
+ * Displays the payments table to the user.
+ */
 @Component({
     selector: 'aio-payments',
     templateUrl: './payments.component.html',

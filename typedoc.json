@@ -1,0 +1,15 @@
+{
+    "out": "./doc/",
+    "name": "Altar.io Technical Challenge",
+    "tsconfig": "tsconfig.app.json",
+    "readme": "README.md",
+    "entryPoints": [
+        "src/main.ts"
+    ],
+    "exclude": [
+        "**/*.spec.ts",
+        "src/environments/*",
+        "src/test.ts"
+    ],
+    "entryPointStrategy": "expand"
+}
