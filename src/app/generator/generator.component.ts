@@ -11,9 +11,17 @@ import { CodeService } from '../code.service';
 })
 export class GeneratorComponent implements OnInit {
 
-    constructor(private codeService: CodeService) { }
+    /** Stores the bias character chosen by the user (if any). */
+    bias = '';
 
+    /**
+     * Class constructor.
+     */
+    constructor(public codeService: CodeService) { }
+
+    /**
+     * Component initializer.
+     */
     ngOnInit(): void {
     }
-
 }

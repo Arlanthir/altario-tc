@@ -1,1 +1,18 @@
-<p>generator works!</p>
+<div>
+    <label>
+        Character
+        <input [(ngModel)]="bias" type="text" [maxLength]="1">
+    </label>
+
+    <button (click)="codeService.triggerGeneration(bias)">Generate 2D Grid</button>
+</div>
+
+<div>
+    <table *ngIf="codeService.grid">
+        <tr *ngFor="let row of codeService.grid">
+            <td *ngFor="let cell of row">
+                {{ cell }}
+            </td>
+        </tr>
+    </table>
+</div>
