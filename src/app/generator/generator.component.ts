@@ -19,6 +19,8 @@ export class GeneratorComponent implements OnInit {
      */
     constructor(public codeService: CodeService) { }
 
+    // TODO: improve UX of the input, disallow non-alpha chars and auto-overwrite on typing a new char
+
     /**
      * Component initializer.
      */
