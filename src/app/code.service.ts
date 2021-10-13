@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { interval, Subscription } from 'rxjs';
 
 /**
  * Generates security codes for payments.
@@ -9,6 +10,9 @@ import { Injectable } from '@angular/core';
 export class CodeService {
     /** Stores the most recently generated character grid. */
     grid?: string[][];
+
+    /** Used to manage subscription to the ongoing grid timer. */
+    timerSubscription?: Subscription;
 
     /** Stores the most recently generated code. */
     code = '';
@@ -26,13 +30,19 @@ export class CodeService {
     }
 
     /**
-     * Called by components to initialize the grid generation.
+     * Called by components to initialize the grid generation or refresh it with a different bias.
      *
      * @param bias The bias character chosen by the user. Will bias each cell to be that character
      * with 20% probability.
      */
     triggerGeneration(bias?: string) {
         this.grid = this.generateGrid(false, bias);
+        if (this.timerSubscription) {
+            this.timerSubscription.unsubscribe();
+        }
+        this.timerSubscription = interval(2000).subscribe(data => {
+            this.grid = this.generateGrid(false, bias);
+        });
     }
 
     /**
