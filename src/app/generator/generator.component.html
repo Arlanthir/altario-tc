@@ -1,7 +1,7 @@
 <div>
     <label>
         Character
-        <input [(ngModel)]="bias" type="text" [maxLength]="1">
+        <input [(ngModel)]="bias" (ngModelChange)="onModelChange($event)" type="text" [maxLength]=1 [disabled]="biasDisabled">
     </label>
 
     <button (click)="codeService.triggerGeneration(bias)">Generate 2D Grid</button>
