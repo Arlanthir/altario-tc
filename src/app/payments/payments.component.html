@@ -1,1 +1,30 @@
-<p>payments works!</p>
+<div>
+    Your code: {{ codeService.code }}
+</div>
+
+<label>
+    Payment
+    <input [(ngModel)]="currentPayment" type="text">
+</label>
+
+<label>
+    Amount
+    <input [(ngModel)]="currentAmount" type="number">
+</label>
+
+<div>
+
+</div>
+
+<button (click)="addPayment()">+ Add</button>
+
+<table>
+    <tr *ngFor="let p of payments;">
+        <td>{{ p.name }}</td>
+        <td>{{ p.amount }}</td>
+        <td>{{ p.code }}</td>
+        <td>{{ p.grid[0][0] }}</td>
+    </tr>
+</table>
+
+<a routerLink="/generator">Generator</a>
