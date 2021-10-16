@@ -1,15 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CodeService } from '../code.service';
-
-/**
- * Models a payment to store in the payments table.
- */
-type Payment = {
-    name: string,
-    amount: number,
-    code: string,
-    grid: string[][]
-};
+import { Payment, PaymentsService } from './payments.service';
 
 /**
  * Displays the payments table to the user.
@@ -27,8 +18,11 @@ export class PaymentsComponent implements OnInit {
     /** The payment amount being currently written. */
     currentAmount = '';
 
-    /** The list of saved payments. */
+    /** The list of displayed payments. */
     payments: Payment[] = [];
+
+    /** Whether we are loading data from the server. */
+    loading = true;
 
     /**
      * Whether the Add payment button should be disabled.
@@ -38,17 +32,26 @@ export class PaymentsComponent implements OnInit {
      * reasonable to give feedback on why it didn't work.
      */
     get buttonDisabled() {
-        return !this.currentPayment || !this.currentAmount;
+        return this.loading || !this.currentPayment || !this.currentAmount;
     }
 
     /**
      * Class constructor.
      *
      * @param codeService Dependency injection.
+     * @param paymentsService Dependency injection.
      */
-    constructor(public codeService: CodeService) { }
+    constructor(public codeService: CodeService, private paymentsService: PaymentsService) { }
 
+    /**
+     * Initializes the component by retrieving the current list of payments
+     * from {@link PaymentsService}.
+     */
     ngOnInit(): void {
+        this.paymentsService.getPayments().subscribe(payments => {
+            this.payments = payments;
+            this.loading = false;
+        });
     }
 
     /**
@@ -60,12 +63,19 @@ export class PaymentsComponent implements OnInit {
             alert('Code generation is not live, please start it on the Generator page.');
             return;
         }
-        this.payments.push({
+        this.loading = true;
+        this.paymentsService.addPayment({
             name: this.currentPayment,
             amount: parseInt(this.currentAmount, 10),
             code: this.codeService.code,
             // No need to duplicate the grid: each new grid is a new reference
             grid: this.codeService.grid!
+        }).subscribe(payment => {
+            this.payments.push(payment);
+            this.loading = false;
+        }, error => {
+            alert(error);
+            this.loading = false;
         });
         this.currentPayment = '';
         this.currentAmount = '';
