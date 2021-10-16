@@ -17,10 +17,16 @@ table {
     color: #000;
 }
 
-td {
+th, td {
     border: 1px solid #000;
-    height: 50px;
+    padding: 5px;
+    height: 40px;
     text-align: center;
+}
+
+th {
+    text-transform: uppercase;
+    color: var(--main-color);
 }
 
 input {
@@ -37,6 +43,10 @@ button {
     text-transform: uppercase;
     color: #fff;
     background-color: var(--main-color);
+
+    &[disabled] {
+        opacity: 0.5;
+    }
 }
 
 /* Helper classes */

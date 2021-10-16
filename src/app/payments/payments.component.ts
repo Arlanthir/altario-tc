@@ -31,6 +31,17 @@ export class PaymentsComponent implements OnInit {
     payments: Payment[] = [];
 
     /**
+     * Whether the Add payment button should be disabled.
+     *
+     * We could also check for code generation being live, but since it's not something
+     * that stands out as much as the empty fields, the error message on click seems more
+     * reasonable to give feedback on why it didn't work.
+     */
+    get buttonDisabled() {
+        return !this.currentPayment || !this.currentAmount;
+    }
+
+    /**
      * Class constructor.
      *
      * @param codeService Dependency injection.
@@ -40,11 +51,15 @@ export class PaymentsComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    // TODO validate, block button, live status
     /**
      * Adds a payment to the list.
      */
     addPayment() {
+        if (!this.codeService.code) {
+            // TODO: Non-system error message that can link to generator page.
+            alert('Code generation is not live, please start it on the Generator page.');
+            return;
+        }
         this.payments.push({
             name: this.currentPayment,
             amount: parseInt(this.currentAmount, 10),
@@ -52,6 +67,8 @@ export class PaymentsComponent implements OnInit {
             // No need to duplicate the grid: each new grid is a new reference
             grid: this.codeService.grid!
         });
+        this.currentPayment = '';
+        this.currentAmount = '';
     }
 
 }

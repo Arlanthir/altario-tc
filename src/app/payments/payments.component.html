@@ -1,26 +1,30 @@
 <aio-code></aio-code>
 
-<label>
-    Payment
-    <input [(ngModel)]="currentPayment" type="text">
-</label>
+<div class="payment-inputs flex">
+    <label>
+        <div>Payment</div>
+        <input [(ngModel)]="currentPayment" type="text">
+    </label>
 
-<label>
-    Amount
-    <input [(ngModel)]="currentAmount" type="number">
-</label>
+    <label>
+        <div>Amount</div>
+        <input [(ngModel)]="currentAmount" type="number">
+    </label>
 
-<div>
-
+    <button (click)="addPayment()" [disabled]="buttonDisabled">+ Add</button>
 </div>
 
-<button (click)="addPayment()">+ Add</button>
-
-<table>
+<table class="vspaced">
+    <tr>
+        <th class="payment-name">Name</th>
+        <th class="small-cell">Amount</th>
+        <th class="small-cell">Code</th>
+        <th class="small-cell">Grid</th>
+    </tr>
     <tr *ngFor="let p of payments;">
-        <td>{{ p.name }}</td>
-        <td>{{ p.amount }}</td>
-        <td>{{ p.code }}</td>
-        <td>{{ p.grid[0][0] }}</td>
+        <td class="payment-name">{{ p.name }}</td>
+        <td class="small-cell">{{ p.amount }}</td>
+        <td class="small-cell">{{ p.code }}</td>
+        <td class="small-cell">{{ p.grid.length * p.grid[0].length }}</td>
     </tr>
 </table>
