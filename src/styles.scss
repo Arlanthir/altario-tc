@@ -1,5 +1,10 @@
 /* Global application styles */
 
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
 table {
     border-collapse: collapse;
 }
@@ -19,4 +24,17 @@ button {
     text-transform: uppercase;
     color: #fff;
     background-color: #8a9da4;
+}
+
+/* Helper classes */
+
+.content-max {
+    margin: 0 auto;
+    padding: 0 10px;
+    max-width: 800px;
+    box-sizing: border-box;
+}
+
+.vspaced {
+    margin-top: 20px;
 }
