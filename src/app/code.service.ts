@@ -62,7 +62,9 @@ export class CodeService {
             }
             grid.push(row);
         }
-        this.code = this.calculateCode(grid);
+        if (!empty) {
+            this.code = this.calculateCode(grid);
+        }
         return grid;
     }
 

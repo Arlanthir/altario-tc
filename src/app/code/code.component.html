@@ -1,0 +1,14 @@
+
+<div>
+    <span *ngIf="codeService.code else codeOffline">
+        <span class="red circle"></span> Live
+    </span>
+
+    <ng-template #codeOffline>
+        <span class="gray circle"></span> Off
+    </ng-template>
+</div>
+
+<div class="vpsaced box centered">
+    Your code: <span class="highlight">{{ codeService.code }}</span>
+</div>

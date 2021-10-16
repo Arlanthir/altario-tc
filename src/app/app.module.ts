@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GeneratorComponent } from './generator/generator.component';
 import { PaymentsComponent } from './payments/payments.component';
+import { CodeComponent } from './code/code.component';
 
 /**
  * The main Angular app Module.
@@ -17,7 +18,8 @@ import { PaymentsComponent } from './payments/payments.component';
     declarations: [
         AppComponent,
         GeneratorComponent,
-        PaymentsComponent
+        PaymentsComponent,
+        CodeComponent
     ],
     imports: [
         BrowserModule,
