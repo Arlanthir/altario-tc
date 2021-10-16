@@ -2,6 +2,7 @@
     display: block;
     text-align: center;
     margin: 10px 0;
+    color: #000;
 }
 
 .circle {
@@ -15,7 +16,7 @@
     }
 
     &.gray {
-        background-color: #555;
+        background-color: var(--main-color);
     }
 }
 

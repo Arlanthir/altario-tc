@@ -1,15 +1,11 @@
 header {
+    padding: 5px 0;
     color: #fff;
-    background-color: #008b8b;
+    background-color: var(--main-color);
 
     .app-bar {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-
         h1 {
             margin: 5px 0;
-            flex-grow: 1;
             font-size: 24px;
             font-weight: normal;
         }
